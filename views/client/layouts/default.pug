@@ -1,0 +1,13 @@
+//- Thằng layouts này dùng bố cục chung cho nhiều trang web
+doctype html
+html 
+    head 
+        title Trang Chủ
+
+    body 
+        //- chia header với footer ra để sau này code nhiều cho dễ 
+        include ../partials/header.pug 
+        //- thằng này dùng cho thằng home với thằng product ấy 
+        block main
+
+        include ../partials/footer.pug
