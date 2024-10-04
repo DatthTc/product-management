@@ -1,2 +1,125 @@
-.test {
+.header {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+  background-color: #ccf9ff;
+}
+.header .inner-logo img {
+  max-width: 100%;
+  max-height: 50px;
+}
+.header .inner-menu > ul {
+  list-style: none; /*bỏ dấu * của th li */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+.header .inner-menu > ul > li {
+  margin-left: 20px;
+}
+.footer {
+  background: #333;
+  color: white;
+  /* text-align: center; */
+  padding: 10px;
+}
+
+/* ------------------------------------*/
+
+/* box head */
+/*
+.box-head {
+  background-color: #f2f2f2;
+  padding: 10px;
+}
+
+.product-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.inner-image .img {
+  width: 100%;
+  height: 200px;
+  text-align: center;
+}
+
+.inner-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.inner-price-new {
+  color: #e74c3c;
+  font-size: 18px;
+}
+
+.inner-price-old {
+  text-decoration: line-through;
+  color: #aaa;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.inner-discount {
+  color: #007bff;
+  font-weight: bold;
+  font-size: 12px;
+  margin-top: 5px;
+}
+*/
+.box-head {
+  margin-bottom: 30px;
+}
+.box-head .inner-title {
+  margin-bottom: 0;
+  font-size: 28px;
+  font-weight: 600;
+  color: rgb(34, 233, 173);
+}
+
+.product-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+.product-item .inner-image {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-bottom: 1px solid #ddd;
+}
+.product-item .inner-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.product-item .inner-content {
+  padding: 15px;
+}
+.product-item .inner-content .inner-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+.product-item .inner-content .inner-price-new {
+  font-size: 18px;
+  font-weight: 600;
+  color: green;
+}
+.product-item .inner-content .inner-price-old {
+  font-size: 18px;
+  font-weight: 600;
+  color: red;
+  text-decoration: line-through;
+}
+.product-item .inner-content .inner-discount {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  background: red;
+  display: inline-block;
+  padding: 3px 18px;
+  border-radius: 8px;
 }

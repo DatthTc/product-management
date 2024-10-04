@@ -1,4 +1,20 @@
-extends ../../layouts/default.pug
+extends ../../layouts/default.pug 
+//- mixins
+include ../../mixins/box-head.pug
+//- extends là kế thừa ; include là nhúng 
 
 block main
-    h1 Danh Sánh Sản Phẩm
+    .container.my-3 
+        .row    
+            .col-12 
+                +box-head("Danh Sách Sản Phẩm")
+        .row 
+            .col-4.mb-3
+                .product-item 
+                    .inner-image 
+                        img(src="/img/iphone 9.jpg", alt="iphone 9",height= "50%")
+                    .inner-content 
+                        h3.inner-title iphone 9
+                        .inner-price-new 99$
+                        .inner-price-old 199$
+                        .inner-discount -20%
