@@ -10,7 +10,7 @@ const port = process.env.PORT;
 //pug
 app.set("views", "./views");
 app.set("view engine", "pug");
-//
+//cấu hình file tĩnh (để public ra ngoài để ai cx có thể xem được)
 app.use(express.static("public"));
 //route
 route(app);
