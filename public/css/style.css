@@ -1,7 +1,7 @@
 .header {
   border-bottom: 1px solid #ddd;
   padding: 10px 0;
-  background-color: #ccf9ff;
+  background-color: #113450;
 }
 .header .inner-logo img {
   max-width: 100%;
@@ -122,4 +122,12 @@
   display: inline-block;
   padding: 3px 18px;
   border-radius: 8px;
+}
+
+.inner-menu a {
+  border: 1px, solid, black;
+  border-radius: 10px;
+  background-color: rgb(133, 75, 199);
+  color: white;
+  padding: 5px;
 }

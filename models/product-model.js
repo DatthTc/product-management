@@ -17,4 +17,4 @@ const productSchema = new mongose.Schema({
 // "products": Đây là tên của collection trong database mà model này sẽ tương tác.
 const Product = mongose.model("Product", productSchema, "products");
 
-module.export = Product;
+module.exports = Product;
