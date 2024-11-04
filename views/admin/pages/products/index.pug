@@ -3,49 +3,61 @@ extends ../../layouts/default.pug
 block main 
     h1 Danh Sách Sản Phẩm
 
-    table.table.table-hover.table-sm 
-        thead 
-            tr STT 
-                th Hình ảnh 
-                th Tiêu đề
-                th Giá
-                th Trạng Thái 
-                th Hành động
-        tbody 
-            each item, index in products 
-                tr 
-                    td #{index+1}
-                    td 
-                        img(
-                            src=item.thumbnail, 
-                            alt=item.title,
-                            width="100px",
-                            height="auto"
-                        )
-                    td #{item.title}
-                    td #{item.price}$
-                    td 
-                       if(item.status == "active")
-                            a(href="#" class="badge badge-success") Hoạt động
-                       else
-                            a(href="#" class="badge badge-danger") DỪng hoạt động
+    .card.mb-3 
+        .card-header Bộ Lọc Và Tìm Kiếm
+        .card-body 
+            each item in filterStatus 
+                button(
+                    class=`btn btn-sm ml-1 btn-outline-success ${item.class}`
+                    button-status = item.status
+                ) #{item.name}
 
-                    td  
-                        button(class="btn btn-warning btn-sm") Sửa
-                        button(class="btn btn-danger btn-sm ml-1") Xóa  
+    .card.mb-3 
+        .card-header Danh Sách Sản Phẩm 
+        .card-body 
+            table.table.table-hover.table-sm 
+                thead 
+                    tr STT 
+                        th Hình ảnh 
+                        th Tiêu đề
+                        th Giá
+                        th Trạng Thái 
+                        th Hành động
+                tbody 
+                    each item, index in products 
+                        tr 
+                            td #{index+1}
+                            td 
+                                img(
+                                    src=item.thumbnail, 
+                                    alt=item.title,
+                                    width="100px",
+                                    height="auto"
+                                )
+                                td #{item.title}
+                                td #{item.price}$
+                                td 
+                                    if(item.status == "active")
+                                            a(href="#" class="badge badge-success") Hoạt động
+                                    else
+                                            a(href="#" class="badge badge-danger") DỪng hoạt động
 
-                //- tr 
-                //-     td 2
-                //-     td 
-                //-         img(src="https://images.unsplash.com/photo-1729867799265-34a921d70baf?q=80&w=1370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", alt="Sản Phẩm 2",width="100px",height="auto")
-                //-     td Sản Phẩm 1
-                //-     td 150$
-                //-     td 
-                //-         a(href="#" class="badge badge-danger") DỪng hoạt động
-                //-     td 
-                //-         button(class="btn btn-warning btn-sm") Sửa
-                //-         button(class="btn btn-danger btn-sm ml-1") Xóa
-                        
-                    
+                                td  
+                                    button(class="btn btn-warning btn-sm") Sửa
+                                    button(class="btn btn-danger btn-sm ml-1") Xóa  
+
+                            //- tr 
+                            //-     td 2
+                            //-     td 
+                            //-         img(src="https://images.unsplash.com/photo-1729867799265-34a921d70baf?q=80&w=1370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", alt="Sản Phẩm 2",width="100px",height="auto")
+                            //-     td Sản Phẩm 1
+                            //-     td 150$
+                            //-     td 
+                            //-         a(href="#" class="badge badge-danger") DỪng hoạt động
+                            //-     td 
+                            //-         button(class="btn btn-warning btn-sm") Sửa
+                            //-         button(class="btn btn-danger btn-sm ml-1") Xóa
+                                    
+                                
 
 
