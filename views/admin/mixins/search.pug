@@ -1,0 +1,17 @@
+mixin search(keyword)
+     form(id="form-search")
+        .input-group 
+            //- .input-group-text @
+            input(
+                type="text"
+                placeholder="Nhập Từ Khóa"
+                name="keyword"
+                class="from-control"
+                value=keyword
+            )
+            .input-group-append 
+                button(
+                    class="btn btn-info"
+                    type="submid"
+                ) Tìm
+            
