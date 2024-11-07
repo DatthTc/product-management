@@ -35,9 +35,18 @@ module.exports.index = async (req, res) => {
   let find = {
     deleted: false,
   };
-
+  // gán status vào hàm find = cái status mà ng dùng nhập vào
   if (req.query.status) {
     find.status = req.query.status;
+  }
+  // chức năng function of search
+  let keyword = "";
+  if (req.query.keyword) {
+    keyword = req.query.keyword;
+
+    const regex = new RegExp(keyword, "i");
+    //title trong database lấy tên sp tạo một key title vào trong hàm find có giá trị = keyword mà ng dùng nhập vào
+    find.title = regex;
   }
 
   const products = await Product.find(find);
@@ -50,5 +59,6 @@ module.exports.index = async (req, res) => {
     products: products,
     // truyền mảng fillterStatus ra ngoài giao diện
     filterStatus: filterStatus,
+    keyword: keyword,
   });
 };

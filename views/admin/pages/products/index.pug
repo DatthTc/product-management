@@ -6,11 +6,30 @@ block main
     .card.mb-3 
         .card-header Bộ Lọc Và Tìm Kiếm
         .card-body 
-            each item in filterStatus 
-                button(
-                    class=`btn btn-sm ml-1 btn-outline-success ${item.class}`
-                    button-status = item.status
-                ) #{item.name}
+            .row 
+                .col-6
+                    each item in filterStatus 
+                        button(
+                            class=`btn btn-sm ml-1 btn-outline-primary ${item.class}`
+                            button-status = item.status
+                        ) #{item.name}
+                .col-6 
+                    form(id="form-search")
+                        .input-group 
+                            //- .input-group-text @
+                            input(
+                                type="text"
+                                placeholder="Nhập Từ Khóa"
+                                name="keyword"
+                                class="from-control"
+                                value=keyword
+                            )
+                            .input-group-append 
+                                button(
+                                    class="btn btn-info"
+                                    type="submid"
+                                ) Tìm
+                            
 
     .card.mb-3 
         .card-header Danh Sách Sản Phẩm 
@@ -43,7 +62,7 @@ block main
                                             a(href="#" class="badge badge-danger") DỪng hoạt động
 
                                 td  
-                                    button(class="btn btn-warning btn-sm") Sửa
+                                    button(class="btn btn-primary btn-sm") Sửa
                                     button(class="btn btn-danger btn-sm ml-1") Xóa  
 
                             //- tr 
