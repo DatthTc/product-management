@@ -50,17 +50,40 @@ block main
                                     button(class="btn btn-primary btn-sm") Sửa
                                     button(class="btn btn-danger btn-sm ml-1") Xóa  
 
-                            //- tr 
-                            //-     td 2
-                            //-     td 
-                            //-         img(src="https://images.unsplash.com/photo-1729867799265-34a921d70baf?q=80&w=1370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", alt="Sản Phẩm 2",width="100px",height="auto")
-                            //-     td Sản Phẩm 1
-                            //-     td 150$
-                            //-     td 
-                            //-         a(href="#" class="badge badge-danger") DỪng hoạt động
-                            //-     td 
-                            //-         button(class="btn btn-warning btn-sm") Sửa
-                            //-         button(class="btn btn-danger btn-sm ml-1") Xóa
+    nav 
+        ul(class="pagination")
+            div #{pagination.currentPage}
+            if(pagination.currentPage < 4)
+                li(class="page-item")
+                    button(
+                        class="page-link"
+                        button-paginationHEHE = pagination.totalPage
+                    ) last page
+            if(pagination.currentPage > 1)
+                li(class="page-item")
+                    button(
+                        class="page-link"
+                        button-paginationHEHE = pagination.currentPage - 1
+                    ) Trang Trước
+            - for(var i = 1; i <= pagination.totalPage; i++ )
+                li(class=`page-item ${pagination.currentPage == i ? "active" : ""}`)
+                    button(
+                        class="page-link"
+                        button-paginationHEHE = i
+                    ) #{i}
+            if(pagination.currentPage < pagination.totalPage)
+                li(class="page-item")
+                    button(
+                        class="page-link"
+                        button-paginationHEHE = pagination.currentPage + 1
+                    ) Kế Tiếp
+            if(pagination.currentPage > pagination.totalPage - 1 )
+                li(class="page-item")
+                    button(
+                        class="page-link"
+                        button-paginationHEHE = 1
+                    )  first page          
+            
                                     
                                 
 

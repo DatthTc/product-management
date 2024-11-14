@@ -12,23 +12,44 @@ module.exports.index = async (req, res) => {
   let find = {
     deleted: false,
   };
-  // gán status vào hàm find = cái status mà ng dùng nhập vào
+
   if (req.query.status) {
-    find.status = req.query.status;
+    find.status = req.query.status; // gán status vào hàm find = cái status mà ng dùng nhập vào
   }
+
+  //funtion in searh
   const objectSearh = searchHelpers(req.query);
   if (objectSearh.keyword) {
     find.title = objectSearh.regex;
   }
+  //end searh
 
-  const products = await Product.find(find);
+  //pagination : Phân Trang
+  let objectPagination = {
+    currentPage: 1,
+    limitItem: 4,
+  };
+  if (req.query.page) {
+    objectPagination.currentPage = parseInt(req.query.page); // get currentPage
+  }
+  objectPagination.skip = // count product in database
+    (objectPagination.currentPage - 1) * objectPagination.limitItem;
+
+  const countProducts = await Product.countDocuments(find); // count product
+  const totalPage = Math.ceil(countProducts / objectPagination.limitItem);
+  objectPagination.totalPage = totalPage;
+
+  //end pagination
+
+  const products = await Product.find(find)
+    .limit(objectPagination.limitItem)
+    .skip(objectPagination.skip);
 
   res.render("admin/pages/products/index.pug", {
     pageTitle: "Danh Sách Sản Phẩm ",
-    //truyen` data ra ngoai giao dien
-    products: products,
-    // truyền mảng fillterStatus ra ngoài giao diện
-    filterStatus: filterStatus,
+    products: products, //truyen` data ra ngoai giao dien
+    filterStatus: filterStatus, // truyền mảng fillterStatus ra ngoài giao diện
     keyword: objectSearh.keyword,
+    pagination: objectPagination,
   });
 };
