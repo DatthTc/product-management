@@ -59,3 +59,66 @@ if (buttonPagination) {
 }
 
 //end Pagination
+//CheckBox
+const checkBoxMulti = document.querySelector("[checkbox-multi]");
+
+if (checkBoxMulti) {
+  const inputCheckAll = checkBoxMulti.querySelector("input[name='checkAll']");
+  const inputCheckID = checkBoxMulti.querySelectorAll("input[name='checkId']");
+
+  inputCheckAll.addEventListener("click", () => {
+    if (inputCheckAll.checked) {
+      inputCheckID.forEach((hehe) => {
+        hehe.checked = true;
+      });
+    } else {
+      inputCheckID.forEach((hehe) => {
+        hehe.checked = false;
+      });
+    }
+  });
+
+  inputCheckID.forEach((hehe) => {
+    hehe.addEventListener("click", () => {
+      const countChecked = checkBoxMulti.querySelectorAll(
+        "input[name='checkId']:checked"
+      ).length;
+      if (countChecked == inputCheckID.length) {
+        inputCheckAll.checked = true;
+      } else {
+        inputCheckAll.checked = false;
+      }
+    });
+  });
+}
+
+//end CheckBox
+
+// form-change-multi
+const formChangeMulti = document.querySelector("[form-change-multi]");
+if (formChangeMulti) {
+  formChangeMulti.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const checkBoxMulti = document.querySelector("[checkbox-multi]");
+    const inputsChecked = checkBoxMulti.querySelectorAll(
+      "input[name='checkId']:checked"
+    );
+
+    if (inputsChecked.length > 0) {
+      let ids = [];
+      const inputIDS = document.querySelector("input[name='ids']");
+
+      inputsChecked.forEach((hehe) => {
+        const id = hehe.value;
+        ids.push(id); //Thêm giá trị id vào cuối mảng ids. push chỉ dành cho mảng
+      });
+      console.log(ids.join(", ")); //Nối các phần tử trong mảng ids lại với nhau bằng dấu phẩy, tạo thành một chuỗi.
+      inputIDS.value = ids.join(", ");
+
+      formChangeMulti.submit();
+    } else {
+      alert("hehe");
+    }
+  });
+}
+// end form-change-multi

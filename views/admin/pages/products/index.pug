@@ -2,6 +2,8 @@ extends ../../layouts/default.pug
 include ../../mixins/filter-status.pug
 include ../../mixins/search.pug
 include ../../mixins/pagination.pug
+include ../../mixins/form-change-multi.pug
+
 
 
 block main 
@@ -20,9 +22,16 @@ block main
     .card.mb-3 
         .card-header Danh Sách Sản Phẩm 
         .card-body 
-            table.table.table-hover.table-sm 
+            +formChangeMulti(`${prefixAdmin}/products/change-multi?_method=PATCH`)
+            table(
+                class = "table table-hover table-sm "
+                checkbox-multi
+            )
                 thead 
-                    tr STT 
+                    tr 
+                        th 
+                            input(type="checkbox" name="checkAll")
+                        th STT
                         th Hình ảnh 
                         th Tiêu đề
                         th Giá
@@ -30,7 +39,13 @@ block main
                         th Hành động
                 tbody 
                     each item, index in products 
-                        tr 
+                        tr  
+                            td 
+                                input(
+                                    type="checkbox"
+                                    name="checkId"
+                                    value=item.id
+                                )
                             td #{index+1}
                             td 
                                 img(
