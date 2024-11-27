@@ -92,3 +92,11 @@ module.exports.changeMulti = async (req, res) => {
   }
   res.redirect("back");
 };
+module.exports.deleteItem = async (req, res) => {
+  //khi truy cập đến route changeStatus thì trong thằng req có biến params lưu trữ các data động
+  const id = req.params.id;
+
+  await Product.deleteOne({ _id: id });
+
+  res.redirect("back");
+};

@@ -122,3 +122,22 @@ if (formChangeMulti) {
   });
 }
 // end form-change-multi
+// delete-products
+const deleteProducts = document.querySelectorAll("[button-delete-id]");
+if (deleteProducts.length > 0) {
+  const formDeleteItem = document.querySelector("#form-change-id");
+  const dataPath = formDeleteItem.getAttribute("data-path");
+  deleteProducts.forEach((button) => {
+    button.addEventListener("click", () => {
+      const isConfirm = confirm("bạn có chắc muốn xóa sản phẩm này?");
+
+      if (isConfirm) {
+        const id = button.getAttribute("data-id");
+        const action = `${dataPath}/${id}?_method=DELETE`;
+        formDeleteItem.action = action;
+        formDeleteItem.submit();
+      }
+    });
+  });
+}
+// end delete-products
