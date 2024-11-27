@@ -10,6 +10,7 @@ const productSchema = new mongose.Schema({
   status: String,
   position: Number,
   deleted: Boolean,
+  deletedAt: Date,
 });
 // mongoose.model: Đây là một hàm trong thư viện Mongoose, được sử dụng để tạo ra một model.
 //"Product": Đây là tên của model, bạn sẽ sử dụng tên này để tương tác với collection "products" trong database.

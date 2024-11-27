@@ -96,7 +96,10 @@ module.exports.deleteItem = async (req, res) => {
   //khi truy cập đến route changeStatus thì trong thằng req có biến params lưu trữ các data động
   const id = req.params.id;
 
-  await Product.updateOne({ _id: id }, { deleted: true });
+  await Product.updateOne(
+    { _id: id },
+    { deleted: true, deletedAt: new Date() }
+  );
 
   res.redirect("back");
 };
