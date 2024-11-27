@@ -6,12 +6,12 @@ const searchHelpers = require("../../helpers/searchProduct");
 const paginationHelper = require("../../helpers/pagination.helper");
 
 //[GET] /admin/products
-module.exports.index = async (req, res) => {
+module.exports.cart = async (req, res) => {
   // là hàm filterStatus chứa một chức năng từ helpers được truyền từ filterStatusHelpers
   const filterStatus = filterStatusHelpers(req.query);
 
   let find = {
-    deleted: false,
+    deleted: true,
   };
 
   if (req.query.status) {
@@ -55,7 +55,7 @@ module.exports.index = async (req, res) => {
     .limit(objectPagination.limitItem)
     .skip(objectPagination.skip);
 
-  res.render("admin/pages/products/index.pug", {
+  res.render("admin/pages/storage/index.pug", {
     pageTitle: "Danh Sách Sản Phẩm ",
     products: products, //truyen` data ra ngoai giao dien
     filterStatus: filterStatus, // truyền mảng fillterStatus ra ngoài giao diện
@@ -92,11 +92,12 @@ module.exports.changeMulti = async (req, res) => {
   }
   res.redirect("back");
 };
-module.exports.deleteItem = async (req, res) => {
+module.exports.updateDeleted = async (req, res) => {
   //khi truy cập đến route changeStatus thì trong thằng req có biến params lưu trữ các data động
+
   const id = req.params.id;
 
-  await Product.updateOne({ _id: id }, { deleted: true });
+  await Product.updateOne({ _id: id }, { deleted: false });
 
   res.redirect("back");
 };

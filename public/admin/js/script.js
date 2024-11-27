@@ -141,3 +141,27 @@ if (deleteProducts.length > 0) {
   });
 }
 // end delete-products
+
+// update-deleted
+const UpdateDeleted = document.querySelectorAll("[button-update-deleted]");
+
+if (UpdateDeleted.length > 0) {
+  const formUpdateId = document.querySelector("#form-update-id");
+  const path = formUpdateId.getAttribute("data-path");
+  UpdateDeleted.forEach((button) => {
+    button.addEventListener("click", () => {
+      const isConfirm = confirm("bạn có chắc muốn update lại sản phẩm này?");
+      if (isConfirm) {
+        const id = button.getAttribute("data-id");
+        // HTTP method: HTTP chỉ định một số phương thức tiêu chuẩn như:
+        // --------------- GET, POST, PUT, DELETE, PATCH, v.v..
+        const action = `${path}/${id}?_method=DELETE`;
+        formUpdateId.action = action;
+        formUpdateId.submit();
+      }
+      console.log(isConfirm);
+    });
+  });
+}
+
+// end update-deleted
