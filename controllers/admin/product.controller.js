@@ -73,6 +73,7 @@ module.exports.changeStatus = async (req, res) => {
 
   res.redirect("back");
 };
+
 //[PATCH]] /admin/products/change-multi/
 module.exports.changeMulti = async (req, res) => {
   //khi truy cập đến route changeStatus thì trong thằng req có biến params lưu trữ các data động
@@ -87,11 +88,19 @@ module.exports.changeMulti = async (req, res) => {
     case "inactive":
       await Product.updateMany({ _id: { $in: ids } }, { status: "inactive" });
       break;
+    case "delete-all":
+      await Product.updateMany(
+        { _id: { $in: ids } },
+        { deleted: true, deletedAt: new Date() }
+      );
+      break;
     default:
       break;
   }
   res.redirect("back");
 };
+
+//[DELETE]] /admin/products/delete/:id
 module.exports.deleteItem = async (req, res) => {
   //khi truy cập đến route changeStatus thì trong thằng req có biến params lưu trữ các data động
   const id = req.params.id;

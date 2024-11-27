@@ -104,6 +104,16 @@ if (formChangeMulti) {
       "input[name='checkId']:checked"
     );
 
+    const typeChange = e.target.elements.type.value;
+
+    if (typeChange == "delete-all") {
+      const isConfirm = confirm("Bạn có chắc muốn xóa những sản phẩm này?");
+
+      if (!isConfirm) {
+        return;
+      }
+    }
+
     if (inputsChecked.length > 0) {
       let ids = [];
       const inputIDS = document.querySelector("input[name='ids']");
@@ -117,7 +127,7 @@ if (formChangeMulti) {
 
       formChangeMulti.submit();
     } else {
-      alert("hehe");
+      alert("bạn phải Click vào Sản Phẩm muốn cập nhật Trạng Thái");
     }
   });
 }
