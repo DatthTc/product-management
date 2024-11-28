@@ -98,6 +98,6 @@ module.exports.updateDeleted = async (req, res) => {
   const id = req.params.id;
 
   await Product.updateOne({ _id: id }, { deleted: false });
-
+  req.flash("success", `Đã Cập Nhật Sản Phẩm có id là {- ${id} } từ storage`);
   res.redirect("back");
 };
