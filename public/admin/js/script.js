@@ -103,7 +103,7 @@ if (formChangeMulti) {
     const inputsChecked = checkBoxMulti.querySelectorAll(
       "input[name='checkId']:checked"
     );
-
+    //delete all
     const typeChange = e.target.elements.type.value;
 
     if (typeChange == "delete-all") {
@@ -113,15 +113,25 @@ if (formChangeMulti) {
         return;
       }
     }
-
+    // end delete all
     if (inputsChecked.length > 0) {
       let ids = [];
       const inputIDS = document.querySelector("input[name='ids']");
 
       inputsChecked.forEach((hehe) => {
         const id = hehe.value;
-        ids.push(id); //Thêm giá trị id vào cuối mảng ids. push chỉ dành cho mảng
+        // thay đổi (change) vị trí (position)
+        if (typeChange == "change-position") {
+          const position = hehe
+            .closest("tr")
+            .querySelector("input[name='position']").value;
+
+          ids.push(`${id}-${position}`);
+        } else {
+          ids.push(id); //Thêm giá trị id vào cuối mảng ids. push chỉ dành cho mảng
+        }
       });
+      // thay đổi (change) vị trí (position)
       console.log(ids.join(", ")); //Nối các phần tử trong mảng ids lại với nhau bằng dấu phẩy, tạo thành một chuỗi.
       inputIDS.value = ids.join(", ");
 
@@ -132,6 +142,7 @@ if (formChangeMulti) {
   });
 }
 // end form-change-multi
+
 // delete-products
 const deleteProducts = document.querySelectorAll("[button-delete-id]");
 if (deleteProducts.length > 0) {
@@ -152,7 +163,7 @@ if (deleteProducts.length > 0) {
 }
 // end delete-products
 
-// update-deleted
+// update-deleted /storage
 const UpdateDeleted = document.querySelectorAll("[button-update-deleted]");
 
 if (UpdateDeleted.length > 0) {
