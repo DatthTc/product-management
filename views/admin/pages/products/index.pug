@@ -26,7 +26,14 @@ block main
     .card.mb-3 
         .card-header Danh Sách Sản Phẩm 
         .card-body 
-            +formChangeMulti(`${prefixAdmin}/products/change-multi?_method=PATCH`)
+            .row
+                .col-8 
+                    +formChangeMulti(`${prefixAdmin}/products/change-multi?_method=PATCH`)
+                .col-4
+                    a(
+                        href=`${prefixAdmin}/products/create`
+                        class="btn btn-outline-success" 
+                    ) creat +
             table(
                 class = "table table-hover table-sm "
                 checkbox-multi
@@ -93,10 +100,11 @@ block main
                                     button(
                                         class="btn btn-danger btn-sm ml-1"
                                         button-delete-id 
-                                        data-id= item.id
+                                          data-id= item.id
                                     ) Xóa  
-
     +pagination(pagination)
+
+    .card-footer Contact me !!!!
 
     form(
         action=""

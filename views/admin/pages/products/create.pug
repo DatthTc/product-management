@@ -1,0 +1,111 @@
+extends ../../layouts/default.pug
+
+
+
+block main 
+    
+    .card.mb-3
+        .card-header Create products !!
+        .card-body
+            form(
+                action=`${prefixAdmin}/products/create`
+                id="form-create-product"
+                method="POST"
+            )
+                div(class="form-group ")
+                    label(for="title") Tiêu đề
+                    input(
+                        type="text"
+                        class="form-control "
+                        id="title"
+                        name="title"
+                        required 
+                    )
+                div(class="form-group")
+                    label(for="desc") Mô Tả
+                    textarea(
+                        class="form-control"
+                        id="desc"
+                        name="description"
+                        rows="5"
+                    )
+                div(class="form-group")
+                    label(for="price") Giá
+                    input(
+                        type="number"
+                        class="form-control"
+                        id="price"
+                        name="price"
+                        value="0"
+                        min="0"
+                    )
+                div(class="form-group")
+                    label(for="discount") %Giảm Giá
+                    input(
+                        type="number"
+                        class="form-control"
+                        id="discount"
+                        name="discountPercentage"
+                        value="0"
+                        min="0"
+                    )
+                div(class="form-group")
+                    label(for="stock") số lượng
+                    input(
+                        type="number"
+                        class="form-control"
+                        id="stock"
+                        name="stock"
+                        value="0"
+                        min="0"
+                    )
+                div(class="form-group")
+                    label(for="thumbnail") Ảnh
+                    input(
+                        type="text"
+                        class="form-control"
+                        id="thumbnail"
+                        name="thumbnail"
+                    )
+                div(class="form-group")
+                    label(for="position") vị trí
+                    input(
+                        type="number"
+                        class="form-control"
+                        id="position"
+                        name="position"
+                        value="Tự Động Tăng"
+                        min="1"
+                    )
+                div(class="form-group form-check form-check-inline")
+                    input(
+                        type="radio"
+                        class="form-check-input"
+                        id="statusActive"
+                        name="status"
+                        value="status"
+                        checked
+                    )
+                    label(for="statusActive" class="form-check-label") Hoạt Động
+                div(class="form-group form-check form-check-inline")
+                    input(
+                        type="radio"
+                        class="form-check-input"
+                        id="statusActive"
+                        name="status"
+                        value="inactive"
+                        checked
+                    )
+                    label(for="statusActive" class="form-check-label") Dừng Hoạt Động
+                div(class="form-group")
+                    
+                button(
+                    type="submit"
+                    class="btn btn-outline-primary"
+                ) Save !
+    .card-footer
+        div(
+            class="text-center"
+        ) Contact me !!!!
+        
+        

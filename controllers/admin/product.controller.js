@@ -1,5 +1,6 @@
 // tại sao file js không viết luôn vào controller là vì : Controller tập trung vào logic xử lý yêu cầu và trả về kết quả. nên không thích hợp xử lý logic phức tạp
 const Product = require("../../models/product-model");
+const systemConfix = require("../../config/system");
 
 const filterStatusHelpers = require("../../helpers/filterStatus.helper");
 const searchHelpers = require("../../helpers/searchProduct");
@@ -52,7 +53,7 @@ module.exports.index = async (req, res) => {
   //end pagination
 
   const products = await Product.find(find)
-    .sort({ position: "asc" }) // desc giảm dần
+    .sort({ position: "desc" }) // desc giảm dần
     .limit(objectPagination.limitItem)
     .skip(objectPagination.skip);
 
@@ -136,4 +137,29 @@ module.exports.deleteItem = async (req, res) => {
   );
   req.flash("success", `Đã Xóa Sản Phẩm có id là {- ${id} }`);
   res.redirect("back");
+};
+
+module.exports.create = async (req, res) => {
+  res.render("admin/pages/products/create.pug", {
+    pageTitle: "create product ",
+  });
+};
+
+module.exports.createPost = async (req, res) => {
+  //gán lại thôi vì khi gửi form từ client về server thì nó ở dạng string thì convert sang number
+  req.body.price = parseInt(req.body.price);
+  req.body.discountPercentage = parseInt(req.body.discountPercentage);
+  req.body.stock = parseInt(req.body.stock);
+
+  if (req.body.position == "") {
+    const countProducts = await Product.countDocuments();
+    req.body.position = countProducts + 1;
+  } else {
+    req.body.position = parseInt(req.body.position);
+  }
+
+  const product = new Product(req.body);
+  await product.save();
+
+  res.redirect(`${systemConfix.prefixAdmin}/products`);
 };
