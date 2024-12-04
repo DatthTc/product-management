@@ -152,16 +152,16 @@ module.exports.createPost = async (req, res) => {
   req.body.price = parseInt(req.body.price);
   req.body.discountPercentage = parseInt(req.body.discountPercentage);
   req.body.stock = parseInt(req.body.stock);
-
+  // position
   if (req.body.position == "") {
     const countProducts = await Product.countDocuments();
     req.body.position = countProducts + 1;
   } else {
     req.body.position = parseInt(req.body.position);
   }
-
+  // multer
   req.body.thumbnail = `/uploads/${req.file.filename}`; // file.filename thuộc tính của thằng multer và gán lại cho thằng thumbnail trong server
-
+  // đẩy create lên database
   const product = new Product(req.body);
   await product.save();
 
