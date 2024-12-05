@@ -60,7 +60,10 @@ block main
                         value="0"
                         min="0"
                     )
-                div(class="form-group")
+                div(
+                    class="form-group"
+                    upload-image
+                )
                     label(for="thumbnail") Ảnh
                     input(
                         type="file"
@@ -68,7 +71,16 @@ block main
                         id="thumbnail"
                         name="thumbnail"
                         accept="image/*"
+                        upload-image-input
                     )
+                    img(
+                        src=""
+                        upload-image-preview
+                        class="image-preview"
+                    )
+                    //- button(
+                    //-     close-button
+                    //- ) X
                 div(class="form-group")
                     label(for="position") vị trí
                     input(

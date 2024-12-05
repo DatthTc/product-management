@@ -79,4 +79,19 @@
   border-radius: 50%;
   cursor: pointer;
 }
-/*end show alert */
+/* end show alert */
+/* uploadImage */
+
+.image-preview {
+  width: 150px;
+  height: auto;
+  margin-top: 15px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+}
+.image-preview[src=""] {
+  display: none;
+}
+
+/* end uploadImage */
