@@ -28,4 +28,12 @@ router.post(
   controller.createPost
 );
 
+router.get("/edit/:id", controller.edit); // mothod get chỉ để lấy ra giao diện
+
+router.patch(
+  "/edit/:id",
+  upload.single("thumbnail"), // multer upload image
+  validate.creatPosst, // mục đích là khi người dùng truy cập vào /create thì phải đi qua th validate (middleWare) trước để kiểm tra điều kiện, rồi mới đền thằng controller
+  controller.editPatch
+);
 module.exports = router;

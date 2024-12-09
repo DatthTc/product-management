@@ -138,7 +138,7 @@ module.exports.deleteItem = async (req, res) => {
   req.flash("success", `Đã Xóa Sản Phẩm có id là {- ${id} }`);
   res.redirect("back");
 };
-
+//[get]/admin/products/create  //phương thức đầu
 module.exports.create = async (req, res) => {
   res.render("admin/pages/products/create.pug", {
     pageTitle: "create product ",
@@ -168,4 +168,47 @@ module.exports.createPost = async (req, res) => {
   await product.save();
 
   res.redirect(`${systemConfix.prefixAdmin}/products`);
+};
+//[get]/admin/products/edit/:id
+module.exports.edit = async (req, res) => {
+  try {
+    const find = {
+      deleted: false,
+      _id: req.params.id, // láy id trên params
+    };
+
+    const product = await Product.findOne(find);
+
+    console.log(product);
+
+    res.render("admin/pages/products/edit.pug", {
+      pageTitle: "Chỉnh sửa sản phẩm",
+      product: product,
+    });
+  } catch (error) {
+    req.flash("error", `{${req.params.id}} id Sản phẩm không tồn tại`);
+    res.redirect(`${systemConfix.prefixAdmin}/products`);
+  }
+};
+module.exports.editPatch = async (req, res) => {
+  const id = req.params.id;
+
+  req.body.price = parseInt(req.body.price);
+  req.body.discountPercentage = parseInt(req.body.discountPercentage);
+  req.body.stock = parseInt(req.body.stock);
+  req.body.position = parseInt(req.body.position);
+  // multer
+  if (req.file) {
+    req.body.thumbnail = `/uploads/${req.file.filename}`; // file.filename thuộc tính của thằng multer và gán lại cho thằng thumbnail trong server
+  }
+
+  // đẩy create lên database
+  try {
+    await Product.updateOne({ _id: id }, req.body);
+    req.flash("success", "Thay đổi chỉnh sửa sản phẩm thành công");
+  } catch (error) {
+    req.flash("error", "Chỉnh sửa Thất bại");
+  }
+
+  res.redirect("back");
 };
