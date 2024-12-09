@@ -9,6 +9,7 @@ const upload = multer({
 });
 
 const controller = require("../../controllers/admin/product.controller");
+const validate = require("../../validates/admin/product.validate");
 
 router.get("/", controller.index);
 
@@ -20,6 +21,11 @@ router.delete("/delete/:id", controller.deleteItem);
 
 router.get("/create", controller.create);
 
-router.post("/create", upload.single("thumbnail"), controller.createPost);
+router.post(
+  "/create",
+  upload.single("thumbnail"), // multer upload image
+  validate.creatPosst, // mục đích là khi người dùng truy cập vào /create thì phải đi qua th validate (middleWare) trước để kiểm tra điều kiện, rồi mới đền thằng controller
+  controller.createPost
+);
 
 module.exports = router;

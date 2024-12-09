@@ -1,12 +1,13 @@
 extends ../../layouts/default.pug
-
+include ../../mixins/alert.pug
 
 
 block main 
     
-    .card.mb-3
-        .card-header Create products !!
+    .card.mb-3  
+        .card-header Create products !!   
         .card-body
+            +alert-error(5000) 
             form(
                 action=`${prefixAdmin}/products/create`
                 id="form-create-product"

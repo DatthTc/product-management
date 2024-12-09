@@ -146,8 +146,6 @@ module.exports.create = async (req, res) => {
 };
 //[post]/admin/products/create
 module.exports.createPost = async (req, res) => {
-  console.log(req.file);
-
   //gán lại thôi vì khi gửi form từ client về server thì nó ở dạng string thì convert sang number
   req.body.price = parseInt(req.body.price);
   req.body.discountPercentage = parseInt(req.body.discountPercentage);
@@ -159,8 +157,12 @@ module.exports.createPost = async (req, res) => {
   } else {
     req.body.position = parseInt(req.body.position);
   }
+
   // multer
-  req.body.thumbnail = `/uploads/${req.file.filename}`; // file.filename thuộc tính của thằng multer và gán lại cho thằng thumbnail trong server
+  if (req.file) {
+    req.body.thumbnail = `/uploads/${req.file.filename}`; // file.filename thuộc tính của thằng multer và gán lại cho thằng thumbnail trong server
+  }
+
   // đẩy create lên database
   const product = new Product(req.body);
   await product.save();
