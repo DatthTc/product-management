@@ -1,4 +1,7 @@
 //express
+const uri =
+  "mongodb+srv://cuchillthoi199:Tiendat12345@cluster0.qi0aa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
 const express = require("express");
 const methodOverride = require("method-override");
 const bodyParser = require("body-parser");
