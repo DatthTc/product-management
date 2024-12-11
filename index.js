@@ -14,10 +14,8 @@ require("dotenv").config();
 const systemConfix = require("./config/system");
 
 const database = require("./config/database");
-//client
-const route = require("./routes/client/index.route");
-//admin
-const routeAdmin = require("./routes/admin/index.route");
+const route = require("./routes/client/index.route"); //client
+const routeAdmin = require("./routes/admin/index.route"); //admin
 
 database.connect();
 
@@ -32,7 +30,8 @@ app.use(cookieParser("keyboard cat"));
 app.use(session({ cookie: { maxAge: 60000 } }));
 app.use(flash());
 //pug
-app.set("views", "./views");
+/* thêm ${_dirname} vì khi deploy lên online nó không hiểu thư mục nên cần phải thêm nó áp dụng cho cả on, off */
+app.set("views", `${__dirname}/views`);
 app.set("view engine", "pug");
 
 // app locals variables
@@ -40,7 +39,7 @@ app.set("view engine", "pug");
 app.locals.prefixAdmin = systemConfix.prefixAdmin;
 
 //cấu hình file tĩnh (để public ra ngoài để ai cx có thể xem được)
-app.use(express.static("public"));
+app.use(express.static(`${__dirname}/public`));
 //route
 routeAdmin(app);
 route(app);
