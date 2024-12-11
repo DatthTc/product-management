@@ -1,0 +1,51 @@
+extends ../../layouts/default.pug
+
+block main 
+    .card-header Change products !!   
+    .card-body
+        nav(aria-label='breadcrumb')
+                    ol.breadcrumb
+                        li(class="breadcrumb-item")
+                            a(href=`/admin/dashboard `) Home
+                        li.breadcrumb-item
+                            a(href=`/admin/products`) product
+                        li.breadcrumb-item.active(aria-current='page')  #{product.title} 
+        .row
+            .col-sm
+                .detail
+                    if  (product.thumbnail)
+                        div(class="mb-4 image magnific-popup")
+                            img(
+                                src=product.thumbnail 
+                            ) 
+                hr
+                a(
+                    href=`${prefixAdmin}/products/edit/${product.id}`
+                    class = "btn btn-primary btn-sm"
+                ) Chỉnh Sửa
+            .col-sm
+                if (product.title)
+                    h1(class="mb-4") Product: <b>#{product.title}</b>
+                if (product.discountPercentage)
+                    div(class="mb-4") Giảm Giá: <b>#{product.discountPercentage}%</b>
+                if (product.stock)
+                    div(class="mb-4") Còn Lại: <b>#{product.stock}</b>
+                if (product.price)
+                    h1(class="mb-4") Giá: <b>#{product.price}$</b>
+                hr
+                if(product.status)
+                    div(class= "mb-4")
+                        span Trạng Thái:
+                        if(product.status === "active")
+                            span(class="badge badge-success") Hoạt Động
+                        else
+                            span(class="badge badge-danger") Dừng Hoạt Động
+                hr
+                if (product.position)
+                    div(class="mb-4") Vị Trí: <b>#{product.position}</b>
+                hr
+                if (product.description)
+                    div(class="mb-4") Mô Tả: #{product.description}
+                hr
+
+                button(class="btn btn-primary btn-lg btn-block") add

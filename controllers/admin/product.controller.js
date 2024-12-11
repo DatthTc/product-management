@@ -190,6 +190,7 @@ module.exports.edit = async (req, res) => {
     res.redirect(`${systemConfix.prefixAdmin}/products`);
   }
 };
+//[PATCH]/admin/products/edit/:id
 module.exports.editPatch = async (req, res) => {
   const id = req.params.id;
 
@@ -211,4 +212,26 @@ module.exports.editPatch = async (req, res) => {
   }
 
   res.redirect("back");
+};
+
+//[get]/admin/products/detail/:id
+module.exports.detail = async (req, res) => {
+  try {
+    const find = {
+      deleted: false,
+      _id: req.params.id, // láy id trên params
+    };
+
+    const product = await Product.findOne(find);
+
+    console.log(product);
+
+    res.render("admin/pages/products/detail.pug", {
+      pageTitle: product.title,
+      product: product,
+    });
+  } catch (error) {
+    req.flash("error", `{${req.params.id}} id Sản phẩm không tồn tại`);
+    res.redirect(`${systemConfix.prefixAdmin}/products`);
+  }
 };

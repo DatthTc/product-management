@@ -49,6 +49,7 @@ block main
                         th Giá
                         th Vị Trí
                         th Trạng Thái 
+                        th View
                         th Hành động
                 tbody 
                     each item, index in products 
@@ -96,6 +97,11 @@ block main
                                                 button-change-status
                                                 class="badge badge-danger"
                                             ) DỪng hoạt động
+                                td 
+                                    a(
+                                        href=`${prefixAdmin}/products/detail/${item.id}`,
+                                        class="btn btn-secondary btn-sm"
+                                    ) chi tiết
 
                                 td  
                                     a(

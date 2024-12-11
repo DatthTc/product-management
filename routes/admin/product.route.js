@@ -36,4 +36,7 @@ router.patch(
   validate.creatPosst, // mục đích là khi người dùng truy cập vào /create thì phải đi qua th validate (middleWare) trước để kiểm tra điều kiện, rồi mới đền thằng controller
   controller.editPatch
 );
+
+router.get("/detail/:id", controller.detail); // mothod get chỉ để lấy ra giao diện
+
 module.exports = router;
