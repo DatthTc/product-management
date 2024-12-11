@@ -19,3 +19,24 @@ module.exports.product = async (req, res) => {
     products: products,
   });
 };
+module.exports.detail = async (req, res) => {
+  try {
+    const find = {
+      deleted: false,
+      slug: req.params.slug, // láy id trên params
+      status: "active",
+    };
+
+    const product = await Product.findOne(find);
+
+    console.log(product);
+
+    res.render("client/pages/products/detail.pug", {
+      pageTitle: product.title,
+      product: product,
+    });
+  } catch (error) {
+    req.flash("error", `{${req.params.id}} id Sản phẩm không tồn tại`);
+    res.redirect(`/products`);
+  }
+};

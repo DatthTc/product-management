@@ -1,0 +1,38 @@
+extends ../../layouts/default.pug 
+block main 
+    .card-header detail product !   
+    .card-body
+        nav(aria-label='breadcrumb')
+                    ol.breadcrumb
+                        li(class="breadcrumb-item")
+                            a(href=`/ `) Home
+                        li.breadcrumb-item
+                            a(href=`/products`) product
+                        li.breadcrumb-item.active(aria-current='page')  #{product.title} 
+        .row
+            .col-sm
+                .detail
+                    if  (product.thumbnail)
+                        div(class="mb-4 image magnific-popup")
+                            img(
+                                src=product.thumbnail 
+                            ) 
+                hr
+            .col-sm
+                if (product.title)
+                    h1(class="mb-4") Product: <b>#{product.title}</b>
+                if (product.discountPercentage)
+                    div(class="mb-4") Giảm Giá: <b>#{product.discountPercentage}%</b>
+                if (product.stock)
+                    div(class="mb-4") Còn Lại: <b>#{product.stock}</b>
+                if (product.price)
+                    h1(class="mb-4") Giá: <b>#{product.price}$</b>
+                hr
+                if (product.position)
+                    div(class="mb-4") Vị Trí: <b>#{product.position}</b>
+                hr
+                if (product.description)
+                    div(class="mb-4") Mô Tả: #{product.description}
+                hr
+
+                button(class="btn btn-primary btn-lg btn-block") add
