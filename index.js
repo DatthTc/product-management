@@ -1,6 +1,6 @@
 //express
-const uri =
-  "mongodb+srv://cuchillthoi199:Tiendat12345@cluster0.qi0aa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+// const uri =
+//   "mongodb+srv://tiendat1987j:Tiendat12345@cluster0.9skqp.mongodb.net/product-management.products";
 
 const express = require("express");
 const methodOverride = require("method-override");
